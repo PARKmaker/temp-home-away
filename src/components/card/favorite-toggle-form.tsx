@@ -26,9 +26,9 @@ export default function FavoriteToggleForm({
   });
 
   return (
-    <div>{pathname}</div>
-    // <FormContainer action={toggleAction}>
-    //   <CardSubmitButton isFavorite={favoriteId ? true : false} />
-    // </FormContainer>
+    // <div>{pathname}</div>
+    <FormContainer action={toggleAction}>
+      <CardSubmitButton isFavorite={favoriteId ? true : false} />
+    </FormContainer>
   );
 }

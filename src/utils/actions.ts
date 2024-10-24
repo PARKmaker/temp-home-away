@@ -200,7 +200,8 @@ export async function fetchFavoriteId({ propertyId }: { propertyId: string }) {
     },
   });
 
-  return (favorite?.id as string) || null;
+  // return (favorite?.id as string) || null;
+  return null;
 }
 
 export async function toggleFavoriteAction(prevState: {
