@@ -49,7 +49,7 @@ export default function PropertyCard({
       </Link>
       <div className="z-5 absolute right-5 top-5">
         {/*favorite toggle button*/}
-        <FavoriteToggleButton propertyId={propertyId} />
+        {/*<FavoriteToggleButton propertyId={propertyId} />*/}
       </div>
     </article>
   );
