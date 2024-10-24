@@ -17,7 +17,7 @@ export default async function PropertiesContainer({
     search,
   });
 
-  if (properties.length === 0) {
+  if (!properties || properties.length === 0) {
     return (
       <EmptyList
         heading="NO results"
