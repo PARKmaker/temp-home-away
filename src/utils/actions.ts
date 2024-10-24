@@ -189,7 +189,6 @@ export async function fetchProperties({
 
 export async function fetchFavoriteId({ propertyId }: { propertyId: string }) {
   const user = await getAuthUser();
-
   const favorite = await db.favorite.findFirst({
     where: {
       propertyId,
@@ -199,7 +198,6 @@ export async function fetchFavoriteId({ propertyId }: { propertyId: string }) {
       id: true,
     },
   });
-
   return favorite?.id || null;
 }
 
