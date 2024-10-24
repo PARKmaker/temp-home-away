@@ -14,12 +14,12 @@ export default function HomePage({
         category={searchParams.category}
         search={searchParams.search}
       />
-      {/*<Suspense fallback={<LoadingCards />}>*/}
-      {/*  <PropertiesContainer*/}
-      {/*    category={searchParams.category}*/}
-      {/*    search={searchParams.search}*/}
-      {/*  />*/}
-      {/*</Suspense>*/}
+      <Suspense fallback={<LoadingCards />}>
+        <PropertiesContainer
+          category={searchParams.category}
+          search={searchParams.search}
+        />
+      </Suspense>
     </section>
   );
 }
