@@ -12,14 +12,10 @@ export default async function PropertiesContainer({
   category,
   search,
 }: PropertiesContainerProps) {
-  console.log("zz");
-
   const properties: PropertyCardProps[] = await fetchProperties({
     category,
     search,
   });
-
-  console.log(properties);
 
   if (properties.length === 0) {
     return (
