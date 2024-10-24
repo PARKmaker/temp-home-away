@@ -51,9 +51,7 @@ export default function PropertyCard({
       </Link>
       <div className="z-5 absolute right-5 top-5">
         {/*favorite toggle button*/}
-        <Suspense fallback={<CardSignInButton />}>
-          <FavoriteToggleButton propertyId={propertyId} />
-        </Suspense>
+        <FavoriteToggleButton propertyId={propertyId} />
       </div>
     </article>
   );

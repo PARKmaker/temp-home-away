@@ -5,6 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 import { CardSignInButton } from "@/components/form/buttons";
 import { fetchFavoriteId } from "@/utils/actions";
 import FavoriteToggleForm from "@/components/card/favorite-toggle-form";
+import { Suspense } from "react";
 
 type FavoriteToggleButtonProps = { propertyId: string };
 
@@ -19,5 +20,9 @@ export default async function FavoriteToggleButton({
 
   const favoriteId = await fetchFavoriteId({ propertyId });
 
-  return <FavoriteToggleForm favoriteId={favoriteId} propertyId={propertyId} />;
+  return (
+    <Suspense fallback={<CardSignInButton />}>
+      <FavoriteToggleForm favoriteId={favoriteId} propertyId={propertyId} />;
+    </Suspense>
+  );
 }
