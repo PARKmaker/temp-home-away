@@ -17,8 +17,8 @@ export default async function FavoriteToggleButton({
     return <CardSignInButton />;
   }
 
-  return <div>{userId}</div>;
-  // const favoriteId = await fetchFavoriteId({ propertyId });
+  const favoriteId = await fetchFavoriteId({ propertyId });
+  return <div>{favoriteId}</div>;
   //
-  // return <FavoriteToggleForm favoriteId={favoriteId} propertyId={propertyId} />;
+  return <FavoriteToggleForm favoriteId={favoriteId} propertyId={propertyId} />;
 }
