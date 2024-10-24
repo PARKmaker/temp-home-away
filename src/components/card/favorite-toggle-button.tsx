@@ -20,9 +20,5 @@ export default async function FavoriteToggleButton({
 
   const favoriteId = await fetchFavoriteId({ propertyId });
 
-  return (
-    <Suspense fallback={<CardSignInButton />}>
-      <FavoriteToggleForm favoriteId={favoriteId} propertyId={propertyId} />;
-    </Suspense>
-  );
+  return <FavoriteToggleForm favoriteId={favoriteId} propertyId={propertyId} />;
 }
