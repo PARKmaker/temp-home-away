@@ -189,16 +189,22 @@ export async function fetchProperties({
 
 export async function fetchFavoriteId({ propertyId }: { propertyId: string }) {
   const user = await getAuthUser();
-  const favorite = await db.favorite.findFirst({
-    where: {
-      propertyId,
-      profileId: user.id,
-    },
-    select: {
-      id: true,
-    },
-  });
-  return favorite?.id || null;
+
+  try {
+    const favorite = await db.favorite.findFirst({
+      where: {
+        propertyId,
+        profileId: user.id,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    return favorite?.id || null;
+  } catch (error) {
+    return null;
+  }
 }
 
 export async function toggleFavoriteAction(prevState: {
