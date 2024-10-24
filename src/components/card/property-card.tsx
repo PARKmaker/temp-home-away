@@ -8,6 +8,8 @@ import { formatCurrency } from "@/utils/format";
 import PropertyRating from "@/components/card/property-rating";
 import FavoriteToggleButton from "@/components/card/favorite-toggle-button";
 import CountryFlagAndName from "@/components/card/country-flag-and-name";
+import { Suspense } from "react";
+import { CardSignInButton } from "@/components/form/buttons";
 
 export default function PropertyCard({
   property,
@@ -49,7 +51,9 @@ export default function PropertyCard({
       </Link>
       <div className="z-5 absolute right-5 top-5">
         {/*favorite toggle button*/}
-        <FavoriteToggleButton propertyId={propertyId} />
+        <Suspense fallback={<CardSignInButton />}>
+          <FavoriteToggleButton propertyId={propertyId} />
+        </Suspense>
       </div>
     </article>
   );
