@@ -53,5 +53,4 @@ model Favorite {
 
   property   Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   propertyId String
-
 }
