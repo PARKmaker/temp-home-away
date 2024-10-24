@@ -181,6 +181,9 @@ export async function fetchProperties({
       price: true,
       image: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 }
 
