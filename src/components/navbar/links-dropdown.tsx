@@ -48,9 +48,8 @@ export default function LinksDropdown() {
           })}
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <SignOutLink>
-              <button className="w-full text-left">로그아웃</button>
-            </SignOutLink>
+            <SignOutLink />
+            {/*<button className="w-full text-left">로그아웃</button>*/}
           </DropdownMenuItem>
         </SignedIn>
       </DropdownMenuContent>

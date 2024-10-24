@@ -13,7 +13,7 @@ function SignOutLink() {
   return (
     <SignOutButton redirectUrl="/">
       <button className="w-full text-left" onClick={handleLogout}>
-        Logout
+        로그아웃
       </button>
     </SignOutButton>
   );
