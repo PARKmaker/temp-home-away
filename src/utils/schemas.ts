@@ -43,30 +43,31 @@ export const propertySchema = z.object({
   name: z
     .string()
     .min(2, {
-      message: "name must be at least 2 characters.",
+      message: "제목은 2글자이상으로 작성해주세요.",
     })
-    .max(100, {
-      message: "name must be less than 100 characters.",
+    .max(20, {
+      message: "제목은 20글자이하로 작성해주세요.",
     }),
   tagline: z
     .string()
     .min(2, {
-      message: "tagline must be at least 2 characters.",
+      message: "요약은 2글자이상으로 작성해주세요.",
     })
-    .max(100, {
-      message: "tagline must be less than 100 characters.",
+    .max(30, {
+      message: "요약은 30글자이하로 작성해주세요.",
     }),
   price: z.coerce.number().int().min(0, {
-    message: "price must be a positive number.",
+    message: "가격은 0원 이상으로 작성해주세요.",
   }),
   category: z.string(),
   description: z.string().refine(
     (description) => {
-      const wordCount = description.split(" ").length;
+      // const wordCount = description.split(" ").length;
+      const wordCount = description.replace(" ", "").length;
       return wordCount >= 10 && wordCount <= 1000;
     },
     {
-      message: "description must be between 10 and 1000 words.",
+      message: "설명은 10 ~ 1000글자로 작성해주세요.",
     },
   ),
   country: z.string(),
@@ -83,4 +84,10 @@ export const propertySchema = z.object({
     message: "bahts amount must be a positive number.",
   }),
   amenities: z.string(),
+});
+
+export const createReviewSchema = z.object({
+  propertyId: z.string(),
+  rating: z.coerce.number().int().min(1).max(5),
+  comment: z.string().min(5).max(1000),
 });

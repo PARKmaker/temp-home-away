@@ -23,14 +23,14 @@ export default function CreatePropertyPage() {
             <FormInput
               name="name"
               type="text"
-              label="Name (20 limit)"
+              label="제목 (최대 20글자)"
               defaultValue="Cabin in Latvia"
             />
             <FormInput
               name="tagline"
-              type="text "
-              label="Tagline (30 limit)"
-              defaultValue="Dream Getaway Awaits You Here!"
+              type="text"
+              label="요약 (최대 30글자)"
+              defaultValue="역세권 숙소!"
             />
             {/* price */}
             <PriceInput />
@@ -46,9 +46,7 @@ export default function CreatePropertyPage() {
             <CountriesInput />
             <ImageInput />
           </div>
-          <h3 className="mb-4 mt-8 text-lg font-medium">
-            Accommodation Detail
-          </h3>
+          <h3 className="mb-4 mt-8 text-lg font-medium">숙박객 정보</h3>
           <CounterInput detail="guests" />
           <CounterInput detail="bedrooms" />
           <CounterInput detail="beds" />

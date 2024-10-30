@@ -1,14 +1,13 @@
 /**
  * Created by tkdgu:박상현 on 2024-10-22
  */
-import { fetchPropertyDetails } from "@/utils/actions";
+import { fetchPropertyDetails, findExistingReview } from "@/utils/actions";
 import { redirect } from "next/navigation";
 import Breadcrumbs from "@/components/properties/breadcrumbs";
 import FavoriteToggleButton from "@/components/card/favorite-toggle-button";
 import ShareButton from "@/components/properties/share-button";
 import ImageContainer from "@/components/properties/image-container";
 import PropertyRating from "@/components/card/property-rating";
-import BookingCalender from "@/components/properties/booking-calender";
 import PropertyDetails from "@/components/properties/propertyDetails";
 import UserInfo from "@/components/properties/user-info";
 import { Separator } from "@/components/ui/separator";
@@ -16,10 +15,18 @@ import Description from "@/components/properties/description";
 import Amenities from "@/components/properties/amenities";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
+import SubmitReview from "@/components/review/submit-review";
+import PropertyReviews from "@/components/review/property-reviews";
+import { auth } from "@clerk/nextjs/server";
 
 const DynamicMap = dynamic(
   () => import("@/components/properties/property-map"),
   { ssr: false, loading: () => <Skeleton className="h-[400px] w-full" /> },
+);
+
+const DynamicBookingWrapper = dynamic(
+  () => import("@/components/booking/booking-wrapper"),
+  { ssr: false, loading: () => <Skeleton className="h-[200px] w-full" /> },
 );
 
 export default async function PropertyDetailsPage({
@@ -36,6 +43,11 @@ export default async function PropertyDetailsPage({
 
   const firstName = property.profile.firstName;
   const profileImage = property.profile.profileImage;
+
+  const { userId } = auth();
+  const isNotOwner = property.profile.clerkId !== userId;
+  const reviewDoesNotExist =
+    userId && isNotOwner && !(await findExistingReview(userId, property.id));
 
   return (
     <section>
@@ -60,13 +72,20 @@ export default async function PropertyDetailsPage({
           <Separator className="mt-4" />
           <Description description={property.description} />
           <Amenities amenities={property.amenities} />
-          <DynamicMap countryCode={property.country} />
+          {/*<DynamicMap countryCode={property.country} />*/}
         </div>
         <div className="flex flex-col items-center lg:col-span-4">
           {/*calender*/}
-          <BookingCalender />
+          <DynamicBookingWrapper
+            propertyId={property.id}
+            price={property.price}
+            bookings={property.bookings}
+          />
         </div>
       </section>
+      {reviewDoesNotExist && <SubmitReview propertyId={property.id} />}
+
+      <PropertyReviews propertyId={property.id} />
     </section>
   );
 }

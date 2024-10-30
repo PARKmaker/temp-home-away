@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { SignInButton } from "@clerk/nextjs";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { LuPenSquare, LuTrash2 } from "react-icons/lu";
 
 type btnSize = "default" | "lg" | "sm";
 
@@ -29,10 +30,10 @@ export function SubmitButton({
       size={size}
     >
       {pending ? (
-        <div>
+        <>
           <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-          Please wait
-        </div>
+          잠시만 기다려주세요...
+        </>
       ) : (
         text
       )}
@@ -77,3 +78,32 @@ export function CardSubmitButton({ isFavorite }: { isFavorite: boolean }) {
     </Button>
   );
 }
+
+type actionType = "edit" | "delete";
+
+export const IconButton = ({ actionType }: { actionType: actionType }) => {
+  const { pending } = useFormStatus();
+
+  const renderIcon = () => {
+    switch (actionType) {
+      case "edit":
+        return <LuPenSquare />;
+      case "delete":
+        return <LuTrash2 />;
+      default:
+        const never: never = actionType;
+        throw new Error(`Invalid action type: ${never}`);
+    }
+  };
+
+  return (
+    <Button
+      type="submit"
+      size="icon"
+      variant="link"
+      className="cursor-pointer p-2"
+    >
+      {pending ? <ReloadIcon className="animate-spin" /> : renderIcon()}
+    </Button>
+  );
+};

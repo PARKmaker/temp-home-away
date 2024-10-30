@@ -12,7 +12,7 @@ function PriceInput({ defaultValue }: FormInputNumberProps) {
   return (
     <div className="mb-2">
       <Label htmlFor="price" className="capitalize">
-        Price ($)
+        가격
       </Label>
       <Input
         id={name}

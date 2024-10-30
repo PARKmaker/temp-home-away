@@ -13,7 +13,7 @@ function CountriesInput({ defaultValue }: { defaultValue?: string }) {
   return (
     <div className="mb-2">
       <Label htmlFor={name} className="capitalize">
-        country
+        국가
       </Label>
       <Select
         defaultValue={defaultValue || formattedCountries[0].code}

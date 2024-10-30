@@ -11,8 +11,10 @@ import { MapContainer, Marker, TileLayer, ZoomControl } from "react-leaflet";
 
 const iconUrl =
   "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png";
-
-const markerIcon = icon({ iconUrl, iconSize: [20, 30] });
+const markerIcon = icon({
+  iconUrl: iconUrl,
+  iconSize: [20, 30],
+});
 
 export default function PropertyMap({ countryCode }: { countryCode: string }) {
   const defaultLocation = [51.505, -0.09] as [number, number];
@@ -36,7 +38,10 @@ export default function PropertyMap({ countryCode }: { countryCode: string }) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <ZoomControl position="bottomright" />
-        <Marker position={location || defaultLocation} icon={markerIcon} />
+        <Marker
+          position={location || defaultLocation}
+          icon={markerIcon}
+        ></Marker>
       </MapContainer>
     </div>
   );
