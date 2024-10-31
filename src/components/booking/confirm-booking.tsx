@@ -27,6 +27,7 @@ export default function ConfirmBooking() {
     );
   }
 
+  console.log("ConfirmBooking");
   const createBooking = createBookingAction.bind(null, {
     propertyId,
     checkIn,

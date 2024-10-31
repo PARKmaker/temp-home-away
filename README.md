@@ -5674,7 +5674,7 @@ export default ReservationsPage;
 - create app/admin/page.tsx
 - add admin to links
 - create components/admin
-  - Chart.tsx
+  - Charts.tsx
   - ChartsContainer.tsx
   - Loading.tsx
   - StatsCard.tsx
@@ -5912,13 +5912,13 @@ export const formatDate = (date: Date, onlyMonth?: boolean) => {
 
 ```tsx
 import { fetchChartsData } from '@/utils/actions';
-import Chart from './Chart';
+import Charts from './Charts';
 
 async function ChartsContainer() {
   const bookings = await fetchChartsData();
   if (bookings.length < 1) return null;
 
-  return <Chart data={bookings} />;
+  return <Charts data={bookings} />;
 }
 export default ChartsContainer;
 ```
@@ -5931,7 +5931,7 @@ export default ChartsContainer;
 npm install recharts
 ```
 
-### Admin User - Chart Component
+### Admin User - Charts Component
 
 ```tsx
 'use client';
@@ -5952,7 +5952,7 @@ type ChartPropsType = {
   }[];
 };
 
-function Chart({ data }: ChartPropsType) {
+function Charts({ data }: ChartPropsType) {
   return (
     <section className='mt-24'>
       <h1 className='text-4xl font-semibold text-center'>Monthly Bookings</h1>
@@ -5968,7 +5968,7 @@ function Chart({ data }: ChartPropsType) {
     </section>
   );
 }
-export default Chart;
+export default Charts;
 ```
 
 ### Stripe
